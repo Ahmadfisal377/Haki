@@ -1,0 +1,295 @@
+@import "tailwindcss";
+
+@theme {
+  /* Design system: warm honeyed palette — terracotta primary, warm rose accent,
+     cream glass surfaces. Replaces the earlier teal/cream scheme. */
+  --color-sand: #fbf3e7;
+  --color-surface: #fffdf9;
+  --color-ink: #3f2e22;
+  --color-muted: #9a7f68;
+  --color-line: #eddfc9;
+  --color-primary: #d96c47;
+  --color-primary-deep: #b95433;
+  --color-primary-soft: #fbeadd;
+  --color-gold: #d99a3d;
+  --color-gold-soft: #f9edd7;
+  --color-rose: #c25b5b;
+  --color-rose-soft: #f7e3e0;
+  /* Subscription section accents (warm, not cyberpunk) */
+  --color-cream-warm: #fff7ed;
+  --color-peach: #ffd6c2;
+  --color-haki-orange: #e87545;
+  --color-neon-orange: rgba(232, 117, 69, 0.35);
+  --font-display: "Space Grotesk", "Noto Sans Arabic", system-ui, sans-serif;
+  --font-body: "Inter", "Noto Sans Arabic", system-ui, sans-serif;
+}
+
+body {
+  background:
+    radial-gradient(1100px 750px at 88% -12%, #f8dcc0 0%, transparent 60%),
+    radial-gradient(900px 650px at -8% 22%, #f9e7d4 0%, transparent 55%),
+    var(--color-sand);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- animated warm background blobs ---------- */
+.bg-blobs {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.5;
+  will-change: transform;
+}
+.blob-a {
+  width: 44vw;
+  height: 44vw;
+  left: -12vw;
+  top: -14vw;
+  background: #f4c69b;
+  animation: drift 24s ease-in-out infinite alternate;
+}
+.blob-b {
+  width: 36vw;
+  height: 36vw;
+  right: -10vw;
+  top: 24vh;
+  background: #f0b3a8;
+  animation: drift 28s ease-in-out -9s infinite alternate-reverse;
+}
+.blob-c {
+  width: 32vw;
+  height: 32vw;
+  left: 30vw;
+  bottom: -16vw;
+  background: #f3d9a6;
+  animation: drift 32s ease-in-out -16s infinite alternate;
+}
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(4vw, 3vh, 0) scale(1.12);
+  }
+}
+
+/* ---------- glass surfaces ---------- */
+.glass {
+  background: color-mix(in srgb, #fffdf9 62%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- shared component classes ---------- */
+@layer components {
+  .card {
+    @apply rounded-2xl border border-white/60 p-5;
+    background: color-mix(in srgb, #fffdf9 65%, transparent);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    backdrop-filter: blur(16px) saturate(150%);
+    box-shadow: 0 10px 34px rgba(178, 118, 68, 0.09);
+    transition:
+      transform 0.25s cubic-bezier(0.22, 0.7, 0.3, 1),
+      box-shadow 0.25s cubic-bezier(0.22, 0.7, 0.3, 1);
+    animation: rise 0.55s cubic-bezier(0.22, 0.7, 0.3, 1) both;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 44px rgba(178, 118, 68, 0.13);
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-[15px] font-medium text-white disabled:cursor-not-allowed disabled:opacity-50;
+    box-shadow: 0 6px 18px rgba(217, 108, 71, 0.28);
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.2s ease,
+      background-color 0.2s ease;
+  }
+  .btn:hover {
+    background: var(--color-primary-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 9px 24px rgba(217, 108, 71, 0.36);
+  }
+  .btn:active {
+    transform: translateY(0);
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-line px-4 py-2.5 text-[15px] font-medium text-ink disabled:opacity-50;
+    background: color-mix(in srgb, #fffdf9 55%, transparent);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    transition:
+      transform 0.15s ease,
+      border-color 0.2s ease,
+      color 0.2s ease;
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary-deep);
+    transform: translateY(-1px);
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-rose/40 bg-rose-soft px-3 py-2 text-sm font-medium text-rose;
+    transition:
+      transform 0.15s ease,
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+  .btn-danger:hover {
+    background: var(--color-rose);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+  .chip {
+    @apply inline-flex cursor-pointer items-center rounded-full border border-line px-3.5 py-1.5 text-sm text-ink;
+    background: color-mix(in srgb, #fffdf9 55%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition:
+      transform 0.15s ease,
+      border-color 0.2s ease,
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+  .chip:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
+  }
+  .chip-on {
+    @apply border-primary bg-primary text-white;
+  }
+  .input {
+    @apply w-full rounded-xl border border-line px-3.5 py-2.5 text-[15px] text-ink outline-none;
+    background: color-mix(in srgb, #fffdf9 72%, transparent);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+  .input:focus {
+    border-color: var(--color-primary);
+    background: color-mix(in srgb, #fffdf9 90%, transparent);
+  }
+  .input::placeholder {
+    color: color-mix(in srgb, var(--color-muted) 70%, transparent);
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+  .h-section {
+    @apply font-display text-lg font-bold;
+  }
+  .sub {
+    @apply text-sm text-muted;
+  }
+  .icon-btn {
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-muted;
+    background: color-mix(in srgb, #fffdf9 55%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition:
+      transform 0.15s ease,
+      border-color 0.2s ease,
+      color 0.2s ease;
+  }
+  .icon-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary-deep);
+    transform: translateY(-1px);
+  }
+
+  /* ---------- subscription plan cards ---------- */
+  .plan-card {
+    @apply relative flex h-full flex-col rounded-2xl border border-line p-5 md:p-6;
+    background: linear-gradient(160deg, rgba(255, 247, 237, 0.88), rgba(255, 253, 249, 0.68));
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    backdrop-filter: blur(16px) saturate(150%);
+    box-shadow: 0 10px 30px rgba(178, 118, 68, 0.08);
+    transition:
+      transform 0.28s cubic-bezier(0.22, 0.7, 0.3, 1),
+      box-shadow 0.28s cubic-bezier(0.22, 0.7, 0.3, 1),
+      border-color 0.28s ease;
+  }
+  .plan-card:hover,
+  .plan-card:focus-within {
+    transform: translateY(-3px);
+    border-color: var(--color-haki-orange);
+    box-shadow:
+      0 0 0 1px var(--color-neon-orange),
+      0 16px 42px rgba(232, 117, 69, 0.16);
+  }
+  .plan-card-recommended {
+    border-color: rgba(232, 117, 69, 0.5);
+    box-shadow:
+      0 0 0 1px rgba(232, 117, 69, 0.16),
+      0 0 34px rgba(232, 117, 69, 0.14),
+      0 14px 38px rgba(178, 118, 68, 0.1);
+  }
+  .plan-card-recommended:hover,
+  .plan-card-recommended:focus-within {
+    box-shadow:
+      0 0 0 1px var(--color-neon-orange),
+      0 0 44px rgba(232, 117, 69, 0.22),
+      0 18px 48px rgba(178, 118, 68, 0.14);
+  }
+  .plan-badge {
+    @apply inline-flex items-center gap-1 rounded-full border px-3 py-1 text-[11px] font-semibold;
+    border-color: rgba(232, 117, 69, 0.35);
+    background: var(--color-peach);
+    color: #9c4526;
+    box-shadow: 0 0 16px rgba(232, 117, 69, 0.18);
+  }
+  .plan-price-glow {
+    color: var(--color-haki-orange);
+    text-shadow: 0 0 22px rgba(232, 117, 69, 0.24);
+  }
+  .plan-btn-glow {
+    box-shadow:
+      0 0 0 1px rgba(232, 117, 69, 0.18),
+      0 6px 22px rgba(232, 117, 69, 0.32);
+  }
+  .plan-card :focus-visible {
+    outline: 2px solid var(--color-haki-orange);
+    outline-offset: 2px;
+  }
+  .plan-dot {
+    @apply h-1.5 w-1.5 rounded-full;
+    background: var(--color-haki-orange);
+    box-shadow: 0 0 8px var(--color-neon-orange);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob,
+  .card {
+    animation: none;
+  }
+  .card:hover,
+  .btn:hover,
+  .btn-ghost:hover,
+  .chip:hover,
+  .btn-danger:hover,
+  .icon-btn:hover,
+  .plan-card:hover,
+  .plan-card:focus-within {
+    transform: none;
+  }
+}

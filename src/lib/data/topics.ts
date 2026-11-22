@@ -1,0 +1,33 @@
+import type { Topic } from "@/lib/types";
+
+/** Static conversation-topic catalog (from the Haki prototype). */
+export const TOPICS: Topic[] = [
+  { id: "t1", category: "light", tags: ["humor", "movies"], text: { en: "What's the last thing that made you laugh out loud?", ar: "ما آخر حاجة ضحّكتك من قلبك؟" } },
+  { id: "t2", category: "light", tags: ["food"], text: { en: "If we could eat anywhere tonight with no limits, where would we go?", ar: "لو نقدر ناكل في أي مكان الليلة من غير حدود، رايحين فين؟" } },
+  { id: "t3", category: "light", tags: ["music"], text: { en: "What song have you had on repeat this week, and why?", ar: "إيه الأغنية اللي بتسمعها كتير الأسبوع ده، وليه؟" } },
+  { id: "t4", category: "light", tags: ["travel"], text: { en: "What's one place you'd drop everything to visit?", ar: "أي مكان تسيب كل حاجة وتروحه؟" } },
+  { id: "t5", category: "light", tags: ["movies"], text: { en: "What show or movie should we watch together next?", ar: "إيه المسلسل أو الفيلم اللي نشوفه سوا بعد كده؟" } },
+  { id: "t6", category: "light", tags: ["humor", "fashion"], text: { en: "What did you see this week that you wanted to show me?", ar: "إيه حاجة شفتها الأسبوع ده وكان نفسك توريهالي؟" } },
+  { id: "t7", category: "light", tags: ["food"], text: { en: "What's your perfect lazy Friday?", ar: "إيه شكل يوم الجمعة الكسول المثالي عندك؟" } },
+  { id: "t8", category: "medium", tags: ["family"], text: { en: "Which family tradition do you want us to keep, or start?", ar: "إيه تقليد عائلي تحب نحافظ عليه أو نبدأه؟" } },
+  { id: "t9", category: "medium", tags: ["growth"], text: { en: "What are you working on in yourself right now?", ar: "إيه حاجة بتشتغل على نفسك فيها دلوقتي؟" } },
+  { id: "t10", category: "medium", tags: ["fitness"], text: { en: "What would give you more energy in your daily routine?", ar: "إيه اللي يخلّي يومك أنشط؟" } },
+  { id: "t11", category: "medium", tags: ["tech", "growth"], text: { en: "What skill would you love to learn this year?", ar: "إيه مهارة نفسك تتعلمها السنة دي؟" } },
+  { id: "t12", category: "medium", tags: ["faith"], text: { en: "What brings you peace when things get stressful?", ar: "إيه اللي بيرجّعلك الهدوء وقت الضغط؟" } },
+  { id: "t13", category: "medium", tags: [], text: { en: "What's a small thing I do that makes your day better?", ar: "إيه حاجة صغيرة بعملها بتحسّن يومك؟" } },
+  { id: "t14", category: "medium", tags: ["travel"], text: { en: "Where do you picture us living in five years?", ar: "بتتخيلنا عايشين فين بعد خمس سنين؟" } },
+  { id: "t15", category: "deep", tags: [], text: { en: "When do you feel most understood by me? When least?", ar: "إمتى بتحس إني فاهمك أكتر؟ وإمتى أقل؟" } },
+  { id: "t16", category: "deep", tags: [], text: { en: "Is there something you've wanted to tell me but couldn't find the moment?", ar: "في حاجة نفسك تقولهالي ومالقتش الوقت المناسب؟" } },
+  { id: "t17", category: "deep", tags: [], text: { en: "When you're stressed, what do you need from me: advice, space, or someone to listen?", ar: "وقت الضغط محتاج/ة مني إيه: نصيحة، مساحة، ولا حد يسمعك؟" } },
+  { id: "t18", category: "deep", tags: ["growth"], text: { en: "What's a fear you rarely say out loud?", ar: "إيه خوف نادراً ما بتقوله بصوت عالي؟" } },
+  { id: "t19", category: "deep", tags: ["family"], text: { en: "What did your family teach you about relationships, good or bad?", ar: "إيه اللي تعلمته من أهلك عن العلاقات، حلو أو وحش؟" } },
+  { id: "t20", category: "deep", tags: ["growth"], text: { en: "What's one thing we could change to feel closer?", ar: "إيه حاجة لو غيرناها نحس بقرب أكتر؟" } },
+  { id: "t21", category: "flirty", tags: [], text: { en: "What's the first thing you noticed about me?", ar: "إيه أول حاجة لفتت نظرك فيا؟" } },
+  { id: "t22", category: "flirty", tags: [], text: { en: "What do I do that you secretly love?", ar: "إيه اللي بعمله وبتحبه في السر؟" } },
+  { id: "t23", category: "flirty", tags: [], text: { en: "If we had a free night with no plans, what would you want us to do?", ar: "لو معانا ليلة فاضية من غير خطط، تحب نعمل إيه؟" } },
+  { id: "t24", category: "flirty", tags: [], text: { en: "Describe us in three words, and make one of them playful.", ar: "وصف علاقتنا في ٣ كلمات، وواحدة منهم تكون شقية." } },
+  { id: "t25", category: "flirty", tags: ["fashion"], text: { en: "What do I wear that you like most?", ar: "إيه حاجة ببقى لابسها وبتعجبك أكتر؟" } },
+  { id: "t26", category: "flirty", tags: ["travel"], text: { en: "What's the most romantic thing you've dreamed of doing with me?", ar: "إيه أكتر حاجة رومانسية حلمت تعملها معايا؟" } },
+  { id: "t27", category: "flirty", tags: [], text: { en: "A surprise date or a planned one? Try to convince me.", ar: "مفاجأة ولا ميعاد متخطط؟ حاول تقنعني." } },
+  { id: "t28", category: "flirty", tags: [], text: { en: "What's your favorite memory of us so far?", ar: "إيه أحلى ذكرى بينا لحد دلوقتي؟" } },
+];
