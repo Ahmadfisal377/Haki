@@ -228,13 +228,6 @@ create table if not exists public.call_sessions (
 );
 
 alter table public.call_sessions enable row level security;
-drop policy if exists "call_sessions_participants" on public.call_sessions;
-create policy "call_sessions_participants" on public.call_sessions
-  for all using (
-    auth.uid() = created_by
-    or exists (select 1 from public.call_participants p
-               where p.session_id = call_sessions.id and p.user_id = auth.uid())
-  ) with check (auth.uid() = created_by);
 
 create table if not exists public.call_participants (
   id uuid primary key default gen_random_uuid(),
@@ -246,6 +239,17 @@ create table if not exists public.call_participants (
 );
 
 alter table public.call_participants enable row level security;
+
+-- This policy references public.call_participants, so it must be created
+-- after that table exists (otherwise PostgreSQL raises 42P01).
+drop policy if exists "call_sessions_participants" on public.call_sessions;
+create policy "call_sessions_participants" on public.call_sessions
+  for all using (
+    auth.uid() = created_by
+    or exists (select 1 from public.call_participants p
+               where p.session_id = call_sessions.id and p.user_id = auth.uid())
+  ) with check (auth.uid() = created_by);
+
 drop policy if exists "call_participants_session_members" on public.call_participants;
 create policy "call_participants_session_members" on public.call_participants
   for all using (
