@@ -240,30 +240,29 @@ create table if not exists public.call_participants (
 
 alter table public.call_participants enable row level security;
 
--- This policy references public.call_participants, so it must be created
--- after that table exists (otherwise PostgreSQL raises 42P01).
+-- Do NOT reference public.call_participants from this policy. That table's
+-- policy checks call_sessions, and the cycle causes infinite RLS recursion
+-- (PostgreSQL 42P17). Session creators own their sessions; a participant can
+-- still read their own membership row via the call_participants policy below.
 drop policy if exists "call_sessions_participants" on public.call_sessions;
 create policy "call_sessions_participants" on public.call_sessions
-  for all using (
-    auth.uid() = created_by
-    or exists (select 1 from public.call_participants p
-               where p.session_id = call_sessions.id and p.user_id = auth.uid())
-  ) with check (auth.uid() = created_by);
+  for all using (auth.uid() = created_by) with check (auth.uid() = created_by);
 
+-- A participant may read/write their own membership row; the session creator
+-- may manage all rows. This only reads call_sessions (now recursion-free),
+-- so RLS never loops back into call_participants.
 drop policy if exists "call_participants_session_members" on public.call_participants;
 create policy "call_participants_session_members" on public.call_participants
   for all using (
-    exists (select 1 from public.call_sessions s
-            where s.id = call_participants.session_id
-              and (s.created_by = auth.uid()
-                   or exists (select 1 from public.call_participants p
-                              where p.session_id = s.id and p.user_id = auth.uid())))
+    auth.uid() = user_id
+    or exists (select 1 from public.call_sessions s
+               where s.id = call_participants.session_id
+                 and s.created_by = auth.uid())
   ) with check (
-    exists (select 1 from public.call_sessions s
-            where s.id = call_participants.session_id
-              and (s.created_by = auth.uid()
-                   or exists (select 1 from public.call_participants p
-                              where p.session_id = s.id and p.user_id = auth.uid())))
+    auth.uid() = user_id
+    or exists (select 1 from public.call_sessions s
+               where s.id = call_participants.session_id
+                 and s.created_by = auth.uid())
   );
 
 -- Consent records are kept separate from user preferences (PRD 88).
