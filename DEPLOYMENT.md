@@ -51,3 +51,15 @@
   PayPal secret, Gemini key.
 - Consider adding security headers (CSP, HSTS, `X-Frame-Options`) and rate limiting to
   auth/payment endpoints.
+
+## 5. Rotation log (2026-11-23)
+
+- Supabase: new secret key `haki_prod_rotated` created; the exposed `default` secret was
+  deleted and confirmed rejected by the API. Vercel `SUPABASE_SERVICE_ROLE_KEY` updated.
+- Gemini: new API key created and verified against `gemini-3.5-flash-lite`; Vercel
+  `LLM_API_KEY` updated.
+- PayPal: new Live REST app created under the verified Business account; its Live
+  client ID/secret were verified with a token request. Vercel `PAYPAL_CLIENT_ID` and
+  `PAYPAL_CLIENT_SECRET` updated. No live charge was made.
+- Vercel Production was redeployed with all rotated values.
+
