@@ -62,4 +62,11 @@
   client ID/secret were verified with a token request. Vercel `PAYPAL_CLIENT_ID` and
   `PAYPAL_CLIENT_SECRET` updated. No live charge was made.
 - Vercel Production was redeployed with all rotated values.
+- The project's stable production domain is `https://haki-one-weld.vercel.app`.
+  The earlier `https://haki-ka2e4dyd1-echo8.vercel.app` URL is a deployment-specific
+  alias pinned to the first deployment and must not be used for production links or
+  Supabase Auth redirects.
+- Supabase Auth Site URL and redirect URL must use the stable production domain:
+  `https://haki-one-weld.vercel.app` and
+  `https://haki-one-weld.vercel.app/auth/callback`.
 
