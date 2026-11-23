@@ -10,5 +10,6 @@ export async function GET() {
     llmConfigured: isLlmConfigured(),
     paypalConfigured: isPaypalConfigured(),
     paypalClientId: paypalClientId() || null,
+    diag: "haki-diag-20261123b",
   });
 }
