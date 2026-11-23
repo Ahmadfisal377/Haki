@@ -69,4 +69,7 @@
 - Supabase Auth Site URL and redirect URL must use the stable production domain:
   `https://haki-one-weld.vercel.app` and
   `https://haki-one-weld.vercel.app/auth/callback`.
+- Local `.env.local` no longer contains the old exposed Gemini key or old Live PayPal
+  credentials; it is sandbox-only. The exposed Live PayPal app should also be deleted
+  in the PayPal developer dashboard if it has not been already.
 
