@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; width: 320px; height: 320px; overflow: hidden; }
+  body {
+    background: radial-gradient(circle at 30% 22%, #fffaf2 0%, #fde9d2 44%, #f6b878 100%);
+    font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .glass {
+    position: relative;
+    width: 238px; height: 238px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, rgba(255,255,255,.72), rgba(255,255,255,.18));
+    border: 1px solid rgba(255,255,255,.75);
+    box-shadow: 0 18px 50px rgba(178, 92, 30, .22), inset 0 1px 1px rgba(255,255,255,.9);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .mark {
+    width: 52px; height: 52px; margin-bottom: 6px;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #ff9a4d, #e8762a);
+    box-shadow: 0 8px 18px rgba(214, 100, 34, .35), inset 0 1px 2px rgba(255,255,255,.5);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ar {
+    font-size: 62px; line-height: 1; font-weight: 700;
+    color: #5b2f13;
+    letter-spacing: -2px;
+    margin-top: -4px;
+    text-shadow: 0 1px 0 rgba(255,255,255,.7);
+  }
+  .en {
+    margin-top: 6px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 15px; font-weight: 700; letter-spacing: 7px;
+    color: #a4531d;
+    padding-left: 7px;
+  }
+  .line { width: 46px; height: 2px; margin-top: 9px; border-radius: 2px; background: #e8762a; opacity: .85; }
+</style>
+</head>
+<body>
+  <div class="glass">
+    <div class="mark">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <path d="M6 7.5h18v12H14l-5.5 4v-4H6z" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M10.5 12.5h9M10.5 16h5.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="ar">حكي</div>
+    <div class="en">HAKI</div>
+    <div class="line"></div>
+  </div>
+</body>
+</html>
