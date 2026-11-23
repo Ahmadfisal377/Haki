@@ -144,9 +144,10 @@ Use it for Instagram, TikTok, and the newsletter sender name "حكي | Haki".
 - Handle: `haki.bond` (`haki.app`, `haki.ai`, `haki.arabic` were already taken).
 - Display name: `Haki | حكي`.
 - Category: Software (business/professional account, category label shown).
-- Profile photo: `marketing/assets/haki-profile-1080.png` (source: `profile-logo-1080.html`) —
-  1080 × 1080, circle-safe centered Haki logo with Arabic حكي and English HAKI logotype,
-  warm cream/peach gradient, no emojis. Uploaded and live on the account.
+- Profile photo: `marketing/assets/haki-profile-community-heart-1080.png` — the supplied
+  "Haki Community Heart Logo", center-cropped from 1254 × 1254 to a circle-safe 1080 × 1080.
+  Original kept at `marketing/assets/haki-community-heart-logo-original.png`. Uploaded and live
+  on the account.
 - Bio: Arabic-first, no emojis, includes the production URL as plain text.
 - Contact email field on the professional-settings form did not persist on web; no phone or
   personal contact info is displayed publicly.
